@@ -11,6 +11,12 @@
                     Home
                 </a>
             </li>
+            <li>
+                <a href="{{ route('todos.index') }}" @class(['menu-active'=> $slug === 'todos'])>
+                    <i data-feather="edit" class="w-4"></i>
+                    Todos
+                </a>
+            </li>
         </ul>
     </div>
 </div>

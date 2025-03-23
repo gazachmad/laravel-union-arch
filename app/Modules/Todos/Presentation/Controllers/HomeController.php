@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Home\Presentation\Controllers;
+namespace App\Modules\Todos\Presentation\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
@@ -11,6 +11,6 @@ class HomeController extends Controller
     {
         $data = ['title' => 'Home', 'slug' => 'home'];
 
-        return view('Home::home', $data);
+        return view('Todos::home.index', $data);
     }
 }

@@ -1,7 +1,10 @@
 <?php
 
+use App\Modules\Todos\Presentation\Controllers\HomeController;
 use App\Modules\Todos\Presentation\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::controller(TodoController::class)
     ->prefix('todos')

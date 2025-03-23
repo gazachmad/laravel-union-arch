@@ -112,7 +112,11 @@ class TodoController extends Controller
             return redirect()->back()->with('alert.success', 'Todo updated successfully');
         }
 
-        $todo = $service->execute(new GetTodoRequest($id));
+        try {
+            $todo = $service->execute(new GetTodoRequest($id));
+        } catch (Exception $e) {
+            return redirect()->route('todos.index')->with('alert.error', $e->getMessage());
+        }
 
         $data = [
             'title' => 'Edit Todo',
@@ -133,6 +137,6 @@ class TodoController extends Controller
             return redirect()->back()->withInput()->with('alert.error', $e->getMessage());
         }
 
-        return redirect()->back()->with('alert.success', 'Todo deleted successfully');
+        return redirect()->route('todos.index')->with('alert.success', 'Todo deleted successfully');
     }
 }

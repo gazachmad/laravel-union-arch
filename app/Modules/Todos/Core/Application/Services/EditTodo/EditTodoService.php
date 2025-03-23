@@ -2,10 +2,9 @@
 
 namespace App\Modules\Todos\Core\Application\Services\EditTodo;
 
-use App\Modules\Todos\Core\Domain\Models\Todo\Todo;
+use App\Modules\Shared\Model\DateTime;
 use App\Modules\Todos\Core\Domain\Models\Todo\TodoId;
 use App\Modules\Todos\Core\Domain\Repositories\Todo\TodoRepository;
-use DateTime;
 use Exception;
 
 class EditTodoService

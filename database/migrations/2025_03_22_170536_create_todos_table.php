@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('description', 1000);
             $table->boolean('completed')->default(false);
-            $table->integer('created_at');
-            $table->integer('updated_at')->nullable();
+            $table->unsignedInteger('created_at');
+            $table->unsignedInteger('updated_at')->nullable();
         });
     }
 

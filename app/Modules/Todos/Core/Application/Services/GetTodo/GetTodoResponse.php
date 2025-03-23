@@ -2,7 +2,7 @@
 
 namespace App\Modules\Todos\Core\Application\Services\GetTodo;
 
-use DateTime;
+use App\Modules\Shared\Model\DateTime;
 
 class GetTodoResponse
 {

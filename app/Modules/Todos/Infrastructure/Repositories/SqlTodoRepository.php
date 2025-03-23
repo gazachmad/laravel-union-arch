@@ -2,12 +2,12 @@
 
 namespace App\Modules\Todos\Infrastructure\Repositories;
 
+use App\Modules\Shared\Model\DateTime;
 use App\Modules\Todos\Core\Domain\Models\Todo\TodoId;
 use App\Modules\Todos\Core\Domain\Models\Todo\Todo;
 use App\Modules\Todos\Core\Domain\Repositories\Todo\Filter;
 use App\Modules\Todos\Core\Domain\Repositories\Todo\Paginated;
 use App\Modules\Todos\Core\Domain\Repositories\Todo\TodoRepository;
-use DateTime;
 use Illuminate\Support\Facades\DB;
 
 class SqlTodoRepository implements TodoRepository

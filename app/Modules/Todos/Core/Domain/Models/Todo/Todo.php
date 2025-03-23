@@ -2,7 +2,7 @@
 
 namespace App\Modules\Todos\Core\Domain\Models\Todo;
 
-use DateTime;
+use App\Modules\Shared\Model\DateTime;
 
 class Todo
 {

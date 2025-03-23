@@ -2,7 +2,7 @@
 
 namespace App\Modules\Todos\Core\Application\Services\GetTodos;
 
-use DateTime;
+use App\Modules\Shared\Model\DateTime;
 
 class ItemResponse
 {

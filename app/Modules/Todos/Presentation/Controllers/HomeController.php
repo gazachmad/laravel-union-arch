@@ -11,6 +11,6 @@ class HomeController extends Controller
     {
         $data = ['title' => 'Home', 'slug' => 'home'];
 
-        return view('Todos::home.index', $data);
+        return view('Todos::home', $data);
     }
 }

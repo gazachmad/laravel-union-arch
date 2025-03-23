@@ -1,5 +1,5 @@
 <!-- Pagination -->
-<div class="flex justify-between">
+<div class="flex justify-between space-x-2">
     <button class="btn" popovertarget="popover-1" style="anchor-name:--anchor-1">
         {{ __('Show :count items', ['count' => request()->input('per_page', 10)]) }}
     </button>

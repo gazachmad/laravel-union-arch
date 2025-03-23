@@ -15,18 +15,7 @@
 </head>
 
 <body>
-    <div class="drawer lg:drawer-open">
-        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-content min-h-full overflow-auto">
-            @include('layouts.navbar')
-
-            @yield('content')
-
-        </div>
-
-        @include('layouts.sidebar')
-    </div>
-
+    @yield('content')
 </body>
 
 </html>

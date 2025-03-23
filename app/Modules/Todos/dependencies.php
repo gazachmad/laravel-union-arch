@@ -1,25 +1,35 @@
 <?php
 
+use App\Modules\Shared\Mechanism\UnitOfWork;
 use App\Modules\Todos\Core\Domain\Repositories\Todo\TodoRepository;
 use App\Modules\Todos\Infrastructure\Repositories\SqlTodoRepository;
+use App\Modules\Todos\Presentation\Controllers\TodoController;
+use Illuminate\Database\ConnectionInterface;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 
 App::singleton(TodoRepository::class, SqlTodoRepository::class);
 
-// App::when([
-//     // Repository
+App::when([
+    // Repository
+    SqlTodoRepository::class,
 
-//     // Service
+    // Service
 
-// ])->needs(ConnectionInterface::class)->give(fn () => DB::connection('sqlite'));
+])
+    ->needs(ConnectionInterface::class)
+    ->give(fn() => DB::connection('todos'));
 
-// App::when([
-//     // Controller
+App::when([
+    // Controller
+    TodoController::class,
 
-//     // Event Listener
+    // Event Listener
 
-//     // Message Processor
+    // Message Processor
 
-//     // Service
+    // Service
 
-// ])->needs(UnitOfWork::class)->give(fn () => UnitOfWork::newInstance(DB::connection('sqlite')));
+])
+    ->needs(UnitOfWork::class)
+    ->give(fn() => UnitOfWork::newInstance(DB::connection('todos')));

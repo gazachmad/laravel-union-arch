@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    protected $connection = 'todos';
+
     /**
      * Run the migrations.
      */
@@ -16,8 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('description', 1000);
             $table->boolean('completed')->default(false);
-            $table->unsignedInteger('created_at');
-            $table->unsignedInteger('updated_at')->nullable();
+            $table->integer('created_at');
+            $table->integer('updated_at')->nullable();
         });
     }
 

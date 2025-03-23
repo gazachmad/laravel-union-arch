@@ -42,6 +42,28 @@ return [
             'synchronous' => null,
         ],
 
+        'system' => [
+            'driver' => 'sqlite',
+            'url' => env('SYSTEM_DB_URL'),
+            'database' => database_path(env('SYSTEM_DB_DATABASE', 'database.sqlite')),
+            'prefix' => '',
+            'foreign_key_constraints' => env('SYSTEM_DB_FOREIGN_KEYS', true),
+            'busy_timeout' => null,
+            'journal_mode' => null,
+            'synchronous' => null,
+        ],
+
+        'todos' => [
+            'driver' => 'sqlite',
+            'url' => env('TODOS_DB_URL'),
+            'database' => database_path(env('TODOS_DB_DATABASE', 'database.sqlite')),
+            'prefix' => '',
+            'foreign_key_constraints' => env('TODOS_DB_FOREIGN_KEYS', true),
+            'busy_timeout' => null,
+            'journal_mode' => null,
+            'synchronous' => null,
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),
@@ -114,6 +136,8 @@ return [
 
     ],
 
+    'available_connections' => ['system', 'todos'],
+
     /*
     |--------------------------------------------------------------------------
     | Migration Repository Table
@@ -147,7 +171,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
             'persistent' => env('REDIS_PERSISTENT', false),
         ],
 

@@ -8,13 +8,15 @@ use App\Modules\Todos\Core\Domain\Models\Todo\Todo;
 use App\Modules\Todos\Core\Domain\Repositories\Todo\Filter;
 use App\Modules\Todos\Core\Domain\Repositories\Todo\Paginated;
 use App\Modules\Todos\Core\Domain\Repositories\Todo\TodoRepository;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\ConnectionInterface;
 
 class SqlTodoRepository implements TodoRepository
 {
+    public function __construct(private ConnectionInterface $db) {}
+
     public function find(TodoId $id): ?Todo
     {
-        $row = DB::table('todos')
+        $row = $this->db->table('todos')
             ->where('id', '=', $id)
             ->first();
 
@@ -23,7 +25,7 @@ class SqlTodoRepository implements TodoRepository
 
     public function getAllPaginated(Filter $filter): Paginated
     {
-        $query = DB::table('todos');
+        $query = $this->db->table('todos');
 
         if ($filter->getSearchText()) {
             $query->where('title', 'like', '%' . $filter->getSearchText() . '%');
@@ -47,13 +49,13 @@ class SqlTodoRepository implements TodoRepository
 
     public function persist(Todo $todo): void
     {
-        DB::table('todos')
+        $this->db->table('todos')
             ->upsert($this->destruct($todo), 'id');
     }
 
     public function delete(Todo $todo): void
     {
-        DB::table('todos')
+        $this->db->table('todos')
             ->where('id', '=', $todo->getId())
             ->delete();
     }

@@ -11,19 +11,19 @@
             @csrf
             <div class="flex items-center gap-2">
                 <div class="basis-3/12 text-sm">Title</div>
-                <div class="basis-9/12">
+                <div class="basis-9/12 space-y-1">
                     <input type="text" name="title" placeholder="Enter title" value="{{ old('title', $todo?->getTitle()) }}" class="input w-full @error('title') input-error @enderror">
                     @error('title')
-                        <div class="text-xs text-error mt-1">{{ $message }}</div>
+                    <div class="text-xs text-error">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
             <div class="flex items-center gap-2">
                 <div class="basis-3/12 text-sm">Description</div>
-                <div class="basis-9/12">
+                <div class="basis-9/12 space-y-1">
                     <textarea name="description" placeholder="Enter description" class="textarea w-full @error('description') textarea-error @enderror">{{ old('description', $todo?->getDescription()) }}</textarea>
                     @error('description')
-                        <div class="text-xs text-error mt-1">{{ $message }}</div>
+                    <div class="text-xs text-error">{{ $message }}</div>
                     @enderror
                 </div>
             </div>

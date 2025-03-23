@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
-
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+foreach (scandir($path = app_path('Modules')) as $dir) {
+    if (file_exists($filePath = "{$path}/{$dir}/scheduling.php")) {
+        require $filePath;
+    }
+}

@@ -32,7 +32,10 @@ class GetTodosService
                     $todo->getUpdatedAt(),
                 ))
                 ->all(),
-            $paginated_todos->getTotal()
+            $paginated_todos->getTotal(),
+            $request->getPerPage(),
+            $request->getPage(),
+            $request->getPath(),
         );
     }
 }

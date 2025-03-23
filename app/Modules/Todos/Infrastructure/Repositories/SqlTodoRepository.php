@@ -33,6 +33,8 @@ class SqlTodoRepository implements TodoRepository
 
         $rows = $query->limit($filter->getLimit())
             ->offset($filter->getOffset())
+            ->orderByDesc('updated_at')
+            ->orderByDesc('created_at')
             ->get();
 
         return new Paginated(

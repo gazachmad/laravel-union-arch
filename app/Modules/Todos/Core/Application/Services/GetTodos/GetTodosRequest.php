@@ -7,7 +7,8 @@ class GetTodosRequest
     public function __construct(
         private ?string $search_text,
         private int $page,
-        private int $per_page
+        private int $per_page,
+        private string $path,
     ) {}
 
     public function getSearchText(): ?string
@@ -23,5 +24,10 @@ class GetTodosRequest
     public function getPerPage(): int
     {
         return $this->per_page;
+    }
+
+    public function getPath(): string
+    {
+        return $this->path;
     }
 }

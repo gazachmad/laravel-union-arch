@@ -31,7 +31,13 @@
                     <td class="px-3 py-2">{{ $loop->iteration + ($todos->currentPage() - 1) * $todos->perPage() }}</td>
                     <td class="px-3 py-2">{{ $todo->getTitle() }}</td>
                     <td class="px-3 py-2">{{ $todo->getDescription() }}</td>
-                    <td class="px-3 py-2">{{ $todo->isCompleted() ? 'Completed' : 'Not Completed' }}</td>
+                    <td class="px-3 py-2">
+                        @if ($todo->isCompleted())
+                        <div class="badge badge-soft badge-success badge-sm">Completed</div>
+                        @else
+                        <div class="badge badge-soft badge-warning badge-sm">Pending</div>
+                        @endif
+                    </td>
                     <td class="px-3 py-2">{{ $todo->getCreatedAt()->format('j/n/Y, H.i') }}</td>
                     <td class="px-3 py-2">{{ $todo->getUpdatedAt() ? $todo->getUpdatedAt()->format('j/n/Y, H.i') : '-' }}</td>
                     <td class="px-3 py-2">

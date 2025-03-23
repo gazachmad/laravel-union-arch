@@ -2,22 +2,24 @@
 
 namespace App\Modules\Todos\Core\Application\Services\GetTodos;
 
-class GetTodosResponse
+use Illuminate\Pagination\LengthAwarePaginator;
+
+class GetTodosResponse extends LengthAwarePaginator
 {
     public function __construct(
         /** @var ItemResponse[] $items */
-        private array $items,
-        private int $total
-    ) {}
-
-    /** @return ItemResponse[] */
-    public function getItems(): array
-    {
-        return $this->items;
-    }
-
-    public function getTotal(): int
-    {
-        return $this->total;
+        array $items,
+        int $total,
+        int $per_page,
+        int $current_page,
+        string $path
+    ) {
+        parent::__construct(
+            $items,
+            $total,
+            $per_page,
+            $current_page,
+            ['path' => $path]
+        );
     }
 }

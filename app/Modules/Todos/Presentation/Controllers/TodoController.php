@@ -29,20 +29,13 @@ class TodoController extends Controller
         $page = $request->input('page', 1);
         $per_page = $request->input('per_page', 10);
 
-        $paginated_todos = $service->execute(
+        $todos = $service->execute(
             new GetTodosRequest(
                 $request->input('q'),
                 $page,
-                $per_page
+                $per_page,
+                $request->fullUrlWithoutQuery(['page']),
             )
-        );
-
-        $todos = new LengthAwarePaginator(
-            $paginated_todos->getItems(),
-            $paginated_todos->getTotal(),
-            $per_page,
-            $page,
-            ['path' => $request->url()]
         );
 
         $data = [

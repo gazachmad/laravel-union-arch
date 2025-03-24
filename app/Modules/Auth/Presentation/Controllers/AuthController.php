@@ -8,6 +8,10 @@ use App\Modules\Auth\Core\Application\Services\Login\LoginService;
 use App\Modules\Auth\Core\Application\Services\Logout\LogoutService;
 use App\Modules\Auth\Core\Application\Services\Register\RegisterRequest;
 use App\Modules\Auth\Core\Application\Services\Register\RegisterService;
+use App\Modules\Auth\Core\Application\Services\ResetPassword\ResetPasswordRequest;
+use App\Modules\Auth\Core\Application\Services\ResetPassword\ResetPasswordService;
+use App\Modules\Auth\Core\Application\Services\SendResetPasswordLink\SendResetPasswordLinkRequest;
+use App\Modules\Auth\Core\Application\Services\SendResetPasswordLink\SendResetPasswordLinkService;
 use App\Modules\Shared\Mechanism\UnitOfWork;
 use Exception;
 use Illuminate\Contracts\View\View;
@@ -77,6 +81,60 @@ class AuthController extends Controller
         $data = ['title' => 'Register'];
 
         return view('Auth::register', $data);
+    }
+
+    /** @return RedirectResponse|View */
+    public function forgotPassword(Request $request, SendResetPasswordLinkService $service)
+    {
+        if ($request->isMethod('POST')) {
+            $request->validate([
+                'email' => 'required|email|exists:users'
+            ]);
+
+            try {
+                $service->execute(
+                    new SendResetPasswordLinkRequest($request->input('email'))
+                );
+            } catch (Exception $e) {
+                return redirect()->back()->withInput()->with('alert.error', $e->getMessage());
+            }
+
+            return redirect()->route('login')->with('alert.success', 'Password reset link sent successfully');
+        }
+
+        $data = ['title' => 'Forgot Password'];
+
+        return view('Auth::forgot-password', $data);
+    }
+
+    /** @return RedirectResponse|View */
+    public function resetPassword(Request $request, string $token, ResetPasswordService $service)
+    {
+        if ($request->isMethod('POST')) {
+            $request->validate([
+                'email' => 'required|email|exists:users',
+                'password' => 'required|confirmed'
+            ]);
+
+            try {
+                $this->unit_of_work->transaction(fn() => $service->execute(
+                    new ResetPasswordRequest(
+                        $token,
+                        $request->input('email'),
+                        $request->input('password'),
+                        $request->input('password_confirmation')
+                    )
+                ));
+            } catch (Exception $e) {
+                return redirect()->back()->withInput()->with('alert.error', $e->getMessage());
+            }
+
+            return redirect()->route('login')->with('alert.success', 'Password reset successfully');
+        }
+
+        $data = ['title' => 'Reset Password'];
+
+        return view('Auth::reset-password', $data);
     }
 
     public function logout(LogoutService $service): RedirectResponse

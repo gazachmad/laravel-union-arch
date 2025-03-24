@@ -50,7 +50,7 @@
                     <button class="btn btn-primary w-full">Register</button>
                 </div>
                 <div class="flex justify-center">
-                    <div>Already have an account? <a href="{{ route('login') }}" class="text-sm text-primary hover:underline">Login</a></div>
+                    <div class="text-sm">Already have an account? <a href="{{ route('login') }}" class="text-primary hover:underline">Login</a></div>
                 </div>
             </form>
         </div>

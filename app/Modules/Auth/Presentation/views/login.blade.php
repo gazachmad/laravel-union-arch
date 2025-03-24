@@ -26,17 +26,17 @@
                     @enderror
                 </div>
                 <label class="text-sm flex items-center gap-2">
-                    <input type="checkbox" name="remember" @checked(old('remember')) class="toggle toggle-primary" />
+                    <input type="checkbox" name="remember" @checked(old('remember')) class="toggle toggle-primary toggle-sm" />
                     <span>Remember me</span>
                 </label>
                 <div class="mt-10">
                     <button class="btn btn-primary w-full">Login</button>
                 </div>
-                {{-- <div class="flex justify-center">
-                    <a href="" class="text-sm text-primary hover:underline">Forgot Password?</a>
-                </div> --}}
                 <div class="flex justify-center">
-                    <div>Don't have an account? <a href="{{ route('auth.register') }}" class="text-sm text-primary hover:underline">Register</a></div>
+                    <a href="{{ route('auth.forgot-password') }}" class="text-sm text-primary hover:underline">Forgot Password?</a>
+                </div>
+                <div class="flex justify-center">
+                    <div class="text-sm">Don't have an account? <a href="{{ route('auth.register') }}" class="text-primary hover:underline">Register</a></div>
                 </div>
             </form>
         </div>

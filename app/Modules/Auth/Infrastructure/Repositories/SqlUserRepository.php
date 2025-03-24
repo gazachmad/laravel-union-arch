@@ -29,6 +29,15 @@ class SqlUserRepository implements UserRepository
         return $user ? $this->construct($user) : null;
     }
 
+    public function findByEmail(Email $email): ?User
+    {
+        $user = $this->db->table('users')
+            ->where('email', '=', $email)
+            ->first();
+
+        return $user ? $this->construct($user) : null;
+    }
+
     public function findById(UserId $id): ?User
     {
         $user = $this->db->table('users')

@@ -60,6 +60,11 @@ class User
         return $this->password;
     }
 
+    public function setPassword(Password $password): void
+    {
+        $this->password = $password;
+    }
+
     public function getCreatedAt(): DateTime
     {
         return $this->created_at;

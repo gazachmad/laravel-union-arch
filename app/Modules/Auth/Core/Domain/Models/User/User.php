@@ -5,13 +5,14 @@ namespace App\Modules\Auth\Core\Domain\Models\User;
 use App\Modules\Shared\Model\DateTime;
 use App\Modules\Shared\Model\Email;
 use App\Modules\Shared\Model\Password;
+use App\Modules\Shared\Model\PhoneNumber;
 
 class User
 {
     public function __construct(
         private UserId $id,
         private string $name,
-        private string $username,
+        private PhoneNumber $phone_number,
         private Email $email,
         private Password $password,
         private DateTime $created_at,
@@ -20,14 +21,14 @@ class User
 
     public static function create(
         string $name,
-        string $username,
+        PhoneNumber $phone_number,
         Email $email,
         Password $password,
     ): User {
         return new User(
             UserId::generate(),
             $name,
-            $username,
+            $phone_number,
             $email,
             $password,
             new DateTime(),
@@ -45,9 +46,23 @@ class User
         return $this->name;
     }
 
-    public function getUsername(): string
+    public function getInitial(): string
     {
-        return $this->username;
+        preg_match_all('#(?<=\s|\b)\pL#u', $this->name, $res);
+        $initials = implode('', $res[0]);
+
+        if (strlen($initials) < 2) {
+            $initials = substr($this->name, 0, 2);
+        } else {
+            $initials = substr($initials, 0, 2);
+        }
+
+        return strtoupper($initials);
+    }
+
+    public function getPhoneNumber(): PhoneNumber
+    {
+        return $this->phone_number;
     }
 
     public function getEmail(): Email

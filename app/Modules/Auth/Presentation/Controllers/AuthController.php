@@ -27,14 +27,14 @@ class AuthController extends Controller
     {
         if ($request->isMethod('POST')) {
             $request->validate([
-                'username' => 'required',
+                'phone_number' => 'required',
                 'password' => 'required'
             ]);
 
             try {
                 $this->unit_of_work->transaction(fn() => $service->execute(
                     new LoginRequest(
-                        $request->input('username'),
+                        $request->input('phone_number'),
                         $request->input('password'),
                         $request->boolean('remember')
                     )
@@ -57,7 +57,7 @@ class AuthController extends Controller
         if ($request->isMethod('POST')) {
             $request->validate([
                 'name' => 'required',
-                'username' => 'required|unique:users',
+                'phone_number' => 'required|unique:users',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|confirmed'
             ]);
@@ -66,7 +66,7 @@ class AuthController extends Controller
                 $this->unit_of_work->transaction(fn() => $service->execute(
                     new RegisterRequest(
                         $request->input('name'),
-                        $request->input('username'),
+                        $request->input('phone_number'),
                         $request->input('email'),
                         $request->input('password')
                     )

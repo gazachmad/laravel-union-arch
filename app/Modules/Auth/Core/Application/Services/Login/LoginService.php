@@ -4,6 +4,7 @@ namespace App\Modules\Auth\Core\Application\Services\Login;
 
 use App\Modules\Auth\Core\Domain\Repositories\UserRepository;
 use App\Modules\Auth\Core\Domain\Services\AuthenticateService;
+use App\Modules\Shared\Model\PhoneNumber;
 use Exception;
 
 class LoginService
@@ -15,7 +16,7 @@ class LoginService
 
     public function execute(LoginRequest $request): void
     {
-        $user = $this->user_repository->findByUsername($request->getUsername());
+        $user = $this->user_repository->findByPhoneNumber(new PhoneNumber($request->getPhoneNumber()));
 
         if (!$user) {
             throw new Exception('Invalid credentials');
@@ -26,7 +27,7 @@ class LoginService
         }
 
         $attempted = $this->authenticate_service->attempt(
-            $request->getUsername(),
+            $user->getPhoneNumber(),
             $request->getPassword(),
             $request->isRemember()
         );

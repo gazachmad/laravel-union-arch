@@ -8,6 +8,7 @@ use App\Modules\Auth\Core\Domain\Repositories\UserRepository;
 use App\Modules\Shared\Model\DateTime;
 use App\Modules\Shared\Model\Email;
 use App\Modules\Shared\Model\Password;
+use App\Modules\Shared\Model\PhoneNumber;
 use Illuminate\Database\ConnectionInterface;
 
 class SqlUserRepository implements UserRepository
@@ -20,10 +21,10 @@ class SqlUserRepository implements UserRepository
             ->upsert($this->destruct($user), 'id');
     }
 
-    public function findByUsername(string $username): ?User
+    public function findByPhoneNumber(PhoneNumber $phone_number): ?User
     {
         $user = $this->db->table('users')
-            ->where('username', '=', $username)
+            ->where('phone_number', '=', $phone_number)
             ->first();
 
         return $user ? $this->construct($user) : null;
@@ -59,7 +60,7 @@ class SqlUserRepository implements UserRepository
         return new User(
             new UserId($row->id),
             $row->name,
-            $row->username,
+            new PhoneNumber($row->phone_number),
             new Email($row->email),
             new Password($row->password),
             new DateTime('@' . $row->created_at),
@@ -73,7 +74,7 @@ class SqlUserRepository implements UserRepository
         return [
             'id' => $user->getId(),
             'name' => $user->getName(),
-            'username' => $user->getUsername(),
+            'phone_number' => $user->getPhoneNumber(),
             'email' => $user->getEmail(),
             'password' => $user->getPassword(),
             'created_at' => $user->getCreatedAt()->getTimestamp(),

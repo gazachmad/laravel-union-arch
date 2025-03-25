@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Modules\Auth\Core\Application\Services\Register;
+namespace App\Http\Middleware\Authenticated;
 
-class RegisterRequest
+class AuthenticatedResponse
 {
     public function __construct(
         private string $name,
         private string $phone_number,
         private string $email,
-        private string $password,
+        private string $initial,
     ) {}
 
     public function getName(): string
@@ -26,8 +26,8 @@ class RegisterRequest
         return $this->email;
     }
 
-    public function getPassword(): string
+    public function getInitial(): string
     {
-        return $this->password;
+        return $this->initial;
     }
 }

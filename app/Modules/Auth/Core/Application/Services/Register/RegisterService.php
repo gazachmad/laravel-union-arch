@@ -6,6 +6,7 @@ use App\Modules\Auth\Core\Domain\Models\User\User;
 use App\Modules\Auth\Core\Domain\Repositories\UserRepository;
 use App\Modules\Shared\Model\Email;
 use App\Modules\Shared\Model\Password;
+use App\Modules\Shared\Model\PhoneNumber;
 
 class RegisterService
 {
@@ -15,7 +16,7 @@ class RegisterService
     {
         $user = User::create(
             $request->getName(),
-            $request->getUsername(),
+            new PhoneNumber($request->getPhoneNumber()),
             new Email($request->getEmail()),
             Password::from($request->getPassword()),
         );

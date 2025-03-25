@@ -5,12 +5,13 @@ namespace App\Modules\Auth\Core\Domain\Repositories;
 use App\Modules\Auth\Core\Domain\Models\User\User;
 use App\Modules\Auth\Core\Domain\Models\User\UserId;
 use App\Modules\Shared\Model\Email;
+use App\Modules\Shared\Model\PhoneNumber;
 
 interface UserRepository
 {
     public function persist(User $user);
 
-    public function findByUsername(string $username): ?User;
+    public function findByPhoneNumber(PhoneNumber $phone_number): ?User;
 
     public function findByEmail(Email $email): ?User;
 

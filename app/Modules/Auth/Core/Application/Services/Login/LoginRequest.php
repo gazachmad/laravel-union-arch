@@ -5,14 +5,14 @@ namespace App\Modules\Auth\Core\Application\Services\Login;
 class LoginRequest
 {
     public function __construct(
-        private string $username,
+        private string $phone_number,
         private string $password,
         private bool $remember
     ) {}
 
-    public function getUsername(): string
+    public function getPhoneNumber(): string
     {
-        return $this->username;
+        return $this->phone_number;
     }
 
     public function getPassword(): string

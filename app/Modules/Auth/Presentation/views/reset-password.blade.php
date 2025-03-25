@@ -13,17 +13,20 @@
                 @csrf
                 <div class="space-y-1">
                     <div class="text-xs">Password</div>
-                    <input type="password" name="password" class="input w-full @error('password') input-error @enderror" placeholder="Enter password">
+                    <div class="input w-full @error('password') input-error @enderror">
+                        <input type="password" name="password" placeholder="Enter password">
+                        <button type="button" class="label cursor-pointer" data-action="toggle-password"><i data-feather="eye" class="w-4"></i></button>
+                    </div>
                     @error('password')
                     <div class="text-xs text-error">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="space-y-1">
                     <div class="text-xs">Password Confirmation</div>
-                    <input type="password" name="password_confirmation" class="input w-full @error('password_confirmation') input-error @enderror" placeholder="Enter password confirmation">
-                    @error('password_confirmation')
-                    <div class="text-xs text-error">{{ $message }}</div>
-                    @enderror
+                    <div class="input w-full">
+                        <input type="password" name="password_confirmation" placeholder="Enter password confirmation">
+                        <button type="button" class="label cursor-pointer" data-action="toggle-password"><i data-feather="eye" class="w-4"></i></button>
+                    </div>
                 </div>
                 <div class="mt-10">
                     <button class="btn btn-primary w-full">Reset</button>

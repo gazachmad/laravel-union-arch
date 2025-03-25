@@ -3,12 +3,12 @@
 @section('content')
 <div class="p-3 space-y-3">
     <form action="">
-        <div class="flex justify-end join">
-            <label class="input w-[300px] join-item">
-                <span class="label"><i data-feather="search" class="w-4"></i></span>
+        <div class="flex justify-end space-x-2">
+            <label class="input">
                 <input type="text" name="q" placeholder="Search..." value="{{ request()->input('q') }}">
+                <button class="label cursor-pointer"><i data-feather="search" class="w-4"></i></button>
             </label>
-            <a href="{{ route('todos.add') }}" class="btn btn-primary join-item"><i data-feather="plus" class="w-4"></i> Add</a>
+            <a href="{{ route('todos.add') }}" class="btn btn-primary"><i data-feather="plus" class="w-4"></i> Add</a>
         </div>
     </form>
     @include('layouts.alert')

@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Middleware\Authenticated\AuthenticatedMiddleware;
 use App\Modules\Todos\Presentation\Controllers\HomeController;
 use App\Modules\Todos\Presentation\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth')
+Route::middleware(['auth', AuthenticatedMiddleware::class])
     ->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name('home');
 

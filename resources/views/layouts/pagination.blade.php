@@ -1,8 +1,22 @@
 <!-- Pagination -->
 <div class="flex justify-between space-x-2">
-    <button class="btn" popovertarget="popover-1" style="anchor-name:--anchor-1">
-        {{ __('Show :count items', ['count' => request()->input('per_page', 10)]) }}
-    </button>
+    <div class="dropdown dropdown-right dropdown-end">
+        <div tabindex="0" role="button" class="btn">{{ __('Show :count items', ['count' => request()->input('per_page', 10)]) }}</div>
+        <ul tabindex="0" class="dropdown-content menu p-1 ml-2 bg-base-100 border border-base-200 rounded-box min-w-40">
+            @if (request()->input('per_page', 10) != 10)
+            <li><a href="{{ request()->fullUrlWithQuery(['per_page' => 10]) }}">10 items</a></li>
+            @endif
+            @if (request()->input('per_page', 10) != 25)
+            <li><a href="{{ request()->fullUrlWithQuery(['per_page' => 25]) }}">25 items</a></li>
+            @endif
+            @if (request()->input('per_page', 10) != 50)
+            <li><a href="{{ request()->fullUrlWithQuery(['per_page' => 50]) }}">50 items</a></li>
+            @endif
+            @if (request()->input('per_page', 10) != 100)
+            <li><a href="{{ request()->fullUrlWithQuery(['per_page' => 100]) }}">100 items</a></li>
+            @endif
+        </ul>
+    </div>
     <div class="join">
         @if ($todos->onFirstPage())
         <button class="join-item btn btn-disabled"><i data-feather="chevrons-left" class="w-4"></i></button>
@@ -47,17 +61,3 @@
                 @endif
     </div>
 </div>
-<ul class="dropdown dropdown-right dropdown-end menu p-1 ml-2 rounded-box bg-base-100 border border-base-200" popover id="popover-1" style="position-anchor:--anchor-1">
-    @if (request()->input('per_page', 10) != 10)
-    <li><a href="{{ request()->fullUrlWithQuery(['per_page' => 10]) }}">10 items</a></li>
-    @endif
-    @if (request()->input('per_page', 10) != 25)
-    <li><a href="{{ request()->fullUrlWithQuery(['per_page' => 25]) }}">25 items</a></li>
-    @endif
-    @if (request()->input('per_page', 10) != 50)
-    <li><a href="{{ request()->fullUrlWithQuery(['per_page' => 50]) }}">50 items</a></li>
-    @endif
-    @if (request()->input('per_page', 10) != 100)
-    <li><a href="{{ request()->fullUrlWithQuery(['per_page' => 100]) }}">100 items</a></li>
-    @endif
-</ul>

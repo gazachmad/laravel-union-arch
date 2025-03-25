@@ -31,7 +31,7 @@
                 <div class="basis-3/12 text-sm"></div>
                 <div class="basis-9/12">
                     <label class="text-sm flex items-center gap-2">
-                        <input type="checkbox" name="completed" @checked(old('completed', $todo?->isCompleted())) class="toggle toggle-primary" />
+                        <input type="checkbox" name="completed" @checked(old('completed', $todo?->isCompleted())) class="toggle toggle-primary toggle-sm" />
                         <span>Completed</span>
                     </label>
                 </div>

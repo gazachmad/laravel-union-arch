@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Exception;
 use Illuminate\Console\Command;
 
 class DBRollbackCommand extends Command
@@ -23,15 +24,17 @@ class DBRollbackCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $connection = $this->argument('database');
+        if (!is_string($connection)) throw new Exception("Argument 'database' must be a string");
+
 
         $this->info("Migrating $connection...");
 
         $this->call('migrate:rollback', [
             "--database" => $connection,
             "--path" => "/database/migrations/$connection"
-        ], $this->output);
+        ]);
     }
 }

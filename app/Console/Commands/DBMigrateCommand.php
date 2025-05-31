@@ -23,7 +23,7 @@ class DBMigrateCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $connections = config('database.available_connections');
 
@@ -33,7 +33,7 @@ class DBMigrateCommand extends Command
             $this->call('migrate', [
                 "--database" => $connection,
                 "--path" => "/database/migrations/$connection"
-            ], $this->output);
+            ]);
         }
 
         if ($this->option('seed')) {

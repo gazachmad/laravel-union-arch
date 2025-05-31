@@ -29,19 +29,19 @@
         $current_page = $todos->currentPage();
         @endphp
 
-        @if ($total_pages <= 7) @foreach (range(1, $total_pages) as $page) <a href="{{ $todos->url($page) }}" class="join-item btn {{ $page == $current_page ? 'btn-active' : '' }}">
+        @if ($total_pages <= 7) @foreach (range(1, $total_pages) as $page) <a href="{{ $todos->url($page) }}" class="join-item btn {{ $page === $current_page ? 'btn-active' : '' }}">
             {{ $page }}
             </a>
             @endforeach
             @else
-            <a href="{{ $todos->url(1) }}" class="join-item btn {{ $current_page == 1 ? 'btn-active' : '' }}">1</a>
+            <a href="{{ $todos->url(1) }}" class="join-item btn {{ $current_page === 1 ? 'btn-active' : '' }}">1</a>
 
             @if ($current_page > 3)
             <button class="join-item btn btn-disabled"><i data-feather="more-horizontal"></i></button>
             @endif
 
             @foreach (range(max(2, $current_page - 1), min($total_pages - 1, $current_page + 1)) as $page)
-            <a href="{{ $todos->url($page) }}" class="join-item btn {{ $page == $current_page ? 'btn-active' : '' }}">
+            <a href="{{ $todos->url($page) }}" class="join-item btn {{ $page === $current_page ? 'btn-active' : '' }}">
                 {{ $page }}
             </a>
             @endforeach
@@ -49,7 +49,7 @@
             @if ($current_page < $total_pages - 2) <button class="join-item btn btn-disabled"><i data-feather="more-horizontal"></i></button>
                 @endif
 
-                <a href="{{ $todos->url($total_pages) }}" class="join-item btn {{ $current_page == $total_pages ? 'btn-active' : '' }}">
+                <a href="{{ $todos->url($total_pages) }}" class="join-item btn {{ $current_page === $total_pages ? 'btn-active' : '' }}">
                     {{ $total_pages }}
                 </a>
                 @endif

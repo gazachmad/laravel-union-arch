@@ -17,7 +17,7 @@ class SqlTodoRepository implements TodoRepository
     public function find(TodoId $id): ?Todo
     {
         $row = $this->db->table('todos')
-            ->where('id', '=', $id)
+            ->where('id', $id)
             ->first();
 
         return $row ? $this->construct($row) : null;
@@ -56,7 +56,7 @@ class SqlTodoRepository implements TodoRepository
     public function delete(Todo $todo): void
     {
         $this->db->table('todos')
-            ->where('id', '=', $todo->getId())
+            ->where('id', $todo->getId())
             ->delete();
     }
 

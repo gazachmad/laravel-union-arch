@@ -14,7 +14,5 @@ class DateTime extends GlobalDateTime
         parent::__construct($datetime, $timezone);
 
         $this->setTimezone($timezone);
-
-        return $this;
     }
 }

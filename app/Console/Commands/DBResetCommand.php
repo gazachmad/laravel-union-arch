@@ -23,14 +23,14 @@ class DBResetCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $connections = config('database.available_connections');
 
         foreach ($connections as $connection) {
             $this->output->writeln("Dropping $connection...");
 
-            $this->call('db:wipe', ["--database" => $connection], $this->output);
+            $this->call('db:wipe', ["--database" => $connection]);
         }
 
         if ($this->option('skip-migrate')) {
@@ -43,7 +43,7 @@ class DBResetCommand extends Command
             $this->call('migrate:fresh', [
                 "--database" => $connection,
                 "--path" => "/database/migrations/$connection"
-            ], $this->output);
+            ]);
         }
 
         if ($this->option('seed')) {

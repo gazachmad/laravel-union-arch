@@ -53,6 +53,17 @@ return [
             'synchronous' => null,
         ],
 
+        'iam' => [
+            'driver' => 'sqlite',
+            'url' => env('IAM_DB_URL'),
+            'database' => database_path(env('IAM_DB_DATABASE', 'database.sqlite')),
+            'prefix' => '',
+            'foreign_key_constraints' => env('IAM_DB_FOREIGN_KEYS', true),
+            'busy_timeout' => null,
+            'journal_mode' => null,
+            'synchronous' => null,
+        ],
+
         'todos' => [
             'driver' => 'sqlite',
             'url' => env('TODOS_DB_URL'),
@@ -136,7 +147,7 @@ return [
 
     ],
 
-    'available_connections' => ['system', 'todos'],
+    'available_connections' => ['system', 'iam', 'todos'],
 
     /*
     |--------------------------------------------------------------------------

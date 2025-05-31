@@ -4,10 +4,11 @@ namespace App\Modules\Todos\Core\Application\Services\GetTodos;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 
+// @phpstan-ignore-next-line
 class GetTodosResponse extends LengthAwarePaginator
 {
+    /** @param ItemResponse[] $items */
     public function __construct(
-        /** @var ItemResponse[] $items */
         array $items,
         int $total,
         int $per_page,

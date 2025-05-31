@@ -8,7 +8,7 @@
             <div class="w-10 h-10 rounded-full bg-base-300 flex items-center justify-center text-base">{{ $auth_user->getInitial() }}</div>
         </div>
         <ul tabindex="0" class="dropdown-content menu p-1 mt-2 bg-base-100 border border-base-200 rounded-box min-w-40 space-y-1">
-            <div class="p-2 space-y-1 text-center">
+            <div class="p-2 text-center">
                 <div class="text-base font-semibold">{{ $auth_user->getName() }}</div>
                 <div class="text-gray-400">{{ $auth_user->getEmail() }}</div>
             </div>

@@ -6,8 +6,8 @@ use App\Modules\Todos\Core\Domain\Models\Todo\Todo;
 
 class Paginated
 {
+    /** @param Todo[] $items */
     public function __construct(
-        /** @var Todo[] $items */
         private array $items,
         private int $total
     ) {}

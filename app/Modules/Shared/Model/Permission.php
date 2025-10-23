@@ -11,17 +11,17 @@ class Permission
         private BigInteger $flag
     ) {
         // Perform version upgrades if needed
-        if ($version <= 1) {
-            if ($this->isAllowedBitFlag(10, $flag)) {
-                $flag = $this->allowBitFlag(164, $flag);
-            }
+        // if ($version <= 1) {
+        //     if ($this->isAllowedBitFlag(10, $flag)) {
+        //         $flag = $this->allowBitFlag(164, $flag);
+        //     }
 
-            $version = 2;
-        }
+        //     $version = 2;
+        // }
 
-        if ($version <= 2) {
-            $version = 3;
-        }
+        // if ($version <= 2) {
+        //     $version = 3;
+        // }
 
         $this->version = $version;
         $this->flag = $flag;
@@ -37,15 +37,14 @@ class Permission
         $flag = clone $this->flag;
 
         // Apply backward compatibility transformations
-        if ($version <= 2) {
-            // Downgrade logic for v2 (none specified in original)
-        }
+        // if ($version <= 2) {
+        // }
 
-        if ($version <= 1) {
-            if ($this->isAllowedBitFlag(164, $flag)) {
-                $flag = $this->allowBitFlag(10, $flag);
-            }
-        }
+        // if ($version <= 1) {
+        //     if ($this->isAllowedBitFlag(164, $flag)) {
+        //         $flag = $this->allowBitFlag(10, $flag);
+        //     }
+        // }
 
         return $flag;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Todos\Core\Domain\Repositories\Todo;
+namespace App\Modules\Shared\Model;
 
 class Filter
 {

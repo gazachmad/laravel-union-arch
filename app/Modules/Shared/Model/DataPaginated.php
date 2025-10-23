@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Modules\Todos\Core\Domain\Repositories\Todo;
+namespace App\Modules\Shared\Model;
 
-use App\Modules\Todos\Core\Domain\Models\Todo\Todo;
-
-class Paginated
+/**
+ * @template T
+ */
+class DataPaginated
 {
-    /** @param Todo[] $items */
+    /** @param T[] $items */
     public function __construct(
         private array $items,
         private int $total
     ) {}
 
-    /** @return Todo[] */
+    /** @return T[] */
     public function getItems(): array
     {
         return $this->items;

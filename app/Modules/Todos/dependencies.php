@@ -1,7 +1,7 @@
 <?php
 
 use App\Modules\Shared\Mechanism\UnitOfWork;
-use App\Modules\Todos\Core\Domain\Repositories\Todo\TodoRepository;
+use App\Modules\Todos\Core\Domain\Repositories\TodoRepository;
 use App\Modules\Todos\Infrastructure\Repositories\SqlTodoRepository;
 use App\Modules\Todos\Presentation\Controllers\TodoController;
 use Illuminate\Database\ConnectionInterface;

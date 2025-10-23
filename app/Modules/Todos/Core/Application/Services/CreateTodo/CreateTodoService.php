@@ -3,7 +3,7 @@
 namespace App\Modules\Todos\Core\Application\Services\CreateTodo;
 
 use App\Modules\Todos\Core\Domain\Models\Todo\Todo;
-use App\Modules\Todos\Core\Domain\Repositories\Todo\TodoRepository;
+use App\Modules\Todos\Core\Domain\Repositories\TodoRepository;
 
 class CreateTodoService
 {

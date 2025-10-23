@@ -4,8 +4,8 @@ namespace App\Modules\Todos\Presentation\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Shared\Mechanism\UnitOfWork;
-use App\Modules\Todos\Core\Application\Services\CreateTodo\CreateTodoRequest;
-use App\Modules\Todos\Core\Application\Services\CreateTodo\CreateTodoService;
+use App\Modules\Todos\Core\Application\Services\CreateTodo\CreatePermissionGroupRequest;
+use App\Modules\Todos\Core\Application\Services\CreateTodo\CreatePermissionGroupService;
 use App\Modules\Todos\Core\Application\Services\DeleteTodo\DeleteTodoRequest;
 use App\Modules\Todos\Core\Application\Services\DeleteTodo\DeleteTodoService;
 use App\Modules\Todos\Core\Application\Services\EditTodo\EditTodoRequest;
@@ -47,7 +47,7 @@ class TodoController extends Controller
     }
 
     /** @return View|RedirectResponse */
-    public function add(Request $request, CreateTodoService $service)
+    public function add(Request $request, CreatePermissionGroupService $service)
     {
         if ($request->isMethod('POST')) {
             $request->validate([
@@ -57,7 +57,7 @@ class TodoController extends Controller
 
             try {
                 $this->unit_of_work->transaction(fn() => $service->execute(
-                    new CreateTodoRequest(
+                    new CreatePermissionGroupRequest(
                         $request->input('title'),
                         $request->input('description'),
                         $request->boolean('completed')

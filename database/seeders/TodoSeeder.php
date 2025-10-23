@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Modules\Shared\Model\DateTime;
 use App\Modules\Todos\Core\Domain\Models\Todo\Todo;
 use App\Modules\Todos\Core\Domain\Models\Todo\TodoId;
-use App\Modules\Todos\Core\Domain\Repositories\Todo\TodoRepository;
+use App\Modules\Todos\Core\Domain\Repositories\TodoRepository;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 

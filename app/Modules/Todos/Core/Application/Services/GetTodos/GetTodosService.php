@@ -2,8 +2,8 @@
 
 namespace App\Modules\Todos\Core\Application\Services\GetTodos;
 
-use App\Modules\Todos\Core\Domain\Repositories\Todo\Filter;
-use App\Modules\Todos\Core\Domain\Repositories\Todo\TodoRepository;
+use App\Modules\Shared\Model\Filter;
+use App\Modules\Todos\Core\Domain\Repositories\TodoRepository;
 
 class GetTodosService
 {

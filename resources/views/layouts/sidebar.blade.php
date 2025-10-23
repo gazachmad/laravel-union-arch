@@ -32,6 +32,12 @@
                             Users
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('permission-groups.index') }}" @class(['menu-active'=> $slug === 'permission-groups'])>
+                            <i data-feather="shield" class="w-4"></i>
+                            Permission Group
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

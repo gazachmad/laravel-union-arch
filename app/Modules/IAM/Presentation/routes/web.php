@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\AuthAccount\AuthAccountMiddleware;
 use App\Modules\IAM\Presentation\Controllers\AuthController;
+use App\Modules\IAM\Presentation\Controllers\PermissionGroupController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')
@@ -18,4 +19,14 @@ Route::middleware('guest')
 Route::middleware(['auth', AuthAccountMiddleware::class])
     ->group(function () {
         Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+        Route::controller(PermissionGroupController::class)
+            ->prefix('permission-groups')
+            ->name('permission-groups.')
+            ->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::match(['GET', 'POST'], '/add', 'add')->name('add');
+                Route::match(['GET', 'POST'], '/edit/{id}', 'edit')->name('edit');
+                Route::get('/delete/{id}', 'delete')->name('delete');
+            });
     });

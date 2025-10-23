@@ -23,29 +23,29 @@ class SqlUserRepository implements UserRepository
 
     public function findByPhoneNumber(PhoneNumber $phone_number): ?User
     {
-        $user = $this->db->table('users')
+        $row = $this->db->table('users')
             ->where('phone_number', $phone_number)
             ->first();
 
-        return $user ? $this->construct($user) : null;
+        return $row ? $this->construct($row) : null;
     }
 
     public function findByEmail(Email $email): ?User
     {
-        $user = $this->db->table('users')
+        $row = $this->db->table('users')
             ->where('email', $email)
             ->first();
 
-        return $user ? $this->construct($user) : null;
+        return $row ? $this->construct($row) : null;
     }
 
     public function findById(UserId $id): ?User
     {
-        $user = $this->db->table('users')
+        $row = $this->db->table('users')
             ->where('id', $id)
             ->first();
 
-        return $user ? $this->construct($user) : null;
+        return $row ? $this->construct($row) : null;
     }
 
     public function delete(User $user): void

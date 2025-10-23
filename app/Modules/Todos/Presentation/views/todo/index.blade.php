@@ -60,6 +60,6 @@
             </tbody>
         </table>
     </div>
-    @include('layouts.pagination')
+    @include('layouts.pagination', ['paginated' => $todos])
 </div>
 @endsection

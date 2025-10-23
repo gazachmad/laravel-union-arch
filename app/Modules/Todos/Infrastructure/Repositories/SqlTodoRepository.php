@@ -2,12 +2,12 @@
 
 namespace App\Modules\Todos\Infrastructure\Repositories;
 
+use App\Modules\Shared\Model\DataPaginated;
 use App\Modules\Shared\Model\DateTime;
+use App\Modules\Shared\Model\Filter;
 use App\Modules\Todos\Core\Domain\Models\Todo\TodoId;
 use App\Modules\Todos\Core\Domain\Models\Todo\Todo;
-use App\Modules\Todos\Core\Domain\Repositories\Todo\Filter;
-use App\Modules\Todos\Core\Domain\Repositories\Todo\Paginated;
-use App\Modules\Todos\Core\Domain\Repositories\Todo\TodoRepository;
+use App\Modules\Todos\Core\Domain\Repositories\TodoRepository;
 use Illuminate\Database\ConnectionInterface;
 
 class SqlTodoRepository implements TodoRepository
@@ -23,7 +23,7 @@ class SqlTodoRepository implements TodoRepository
         return $row ? $this->construct($row) : null;
     }
 
-    public function getAllPaginated(Filter $filter): Paginated
+    public function getAllPaginated(Filter $filter)
     {
         $query = $this->db->table('todos');
 
@@ -39,7 +39,7 @@ class SqlTodoRepository implements TodoRepository
             ->orderByDesc('created_at')
             ->get();
 
-        return new Paginated(
+        return new DataPaginated(
             collect($rows)
                 ->map(fn($row) => $this->construct($row))
                 ->all(),
